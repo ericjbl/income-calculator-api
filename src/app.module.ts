@@ -18,6 +18,10 @@ import { ConfigModule } from '@nestjs/config';
       database: process.env.DATABASE,
       entities: [CalculationType],
       synchronize: false,
+      ssl:
+      process.env.NODE_ENV === 'production'
+        ? { rejectUnauthorized: false }
+        : false,
     }),
     CalculationTypeModule
   ],
