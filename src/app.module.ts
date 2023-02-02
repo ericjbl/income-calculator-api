@@ -5,6 +5,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CalculationTypeModule } from './CalculationTypes/calculationTypes.module';
 import { CalculationType } from './CalculationTypes/calculationTypes.entity';
 import { ConfigModule } from '@nestjs/config';
+import { ProofTypeModule } from './ProofTypes/proofTypes.module';
+import { ProofTypes } from './ProofTypes/proofTypes.entity';
+import { ItemRolesModule } from './ItemRoles/itemRoles.module';
+import { ItemRoles } from './ItemRoles/itemRoles.entity';
+import { Item } from './Items/item.entity';
+import { ItemModule } from './Items/item.module';
+import { ProofStatusModule } from './ProofStatus/proofStatus.module';
+import { ProofStatus } from './ProofStatus/proofStatus.entity';
 
 @Module({
   imports: [
@@ -16,14 +24,24 @@ import { ConfigModule } from '@nestjs/config';
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DATABASE,
-      entities: [CalculationType],
+      entities: [
+        CalculationType,
+        ProofTypes,
+        ItemRoles,
+        Item,
+        ProofStatus
+      ],
       synchronize: false,
       ssl:
       process.env.NODE_ENV === 'production'
         ? { rejectUnauthorized: false }
         : false,
     }),
-    CalculationTypeModule
+    CalculationTypeModule,
+    ProofTypeModule,
+    ItemRolesModule,
+    ItemModule,
+    ProofStatusModule
   ],
   controllers: [AppController],
   providers: [AppService],
