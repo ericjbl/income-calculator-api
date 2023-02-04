@@ -7,4 +7,5 @@ export class CreateReport {
     EligibilityEndDate: Date | string;
     TypeId: number;
     Type: CalculationType;
+    total: number;
 }

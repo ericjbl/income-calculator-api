@@ -20,6 +20,9 @@ export class Report {
     @Column({name: 'eligibility_end_date'})
     EligibilityEndDate: Date;
 
+    @Column()
+    total:number;
+    
     @OneToOne(() => CalculationType, (calcType) => calcType.id)
     @JoinColumn({name: 'calc_type_id'})
     Type: CalculationType;
