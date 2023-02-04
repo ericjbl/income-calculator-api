@@ -17,8 +17,12 @@ export class ItemService {
     private reportRepository: Repository<Report>,
   ) {}
 
-  getAll(): Promise<Item []> {
-    return this.repository.find()
+  getByReportID(reportId: number): Promise<Item []> {
+    return this.repository.find({
+        where: {
+            Report: { id: reportId }
+        }
+    })
   }
 
   async add(item: CreateItem): Promise<Item> {

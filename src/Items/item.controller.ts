@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CreateItem } from './dto/createItem.dto';
 import { Item } from './item.entity';
 import { ItemService } from './item.service';
@@ -7,9 +7,9 @@ import { ItemService } from './item.service';
 export class ItemController {
   constructor(private readonly service: ItemService) {}
 
-  @Get()
-  getAll(): Promise<Item[]> {
-    return this.service.getAll();
+  @Get('/:reportId')
+  getByReportID(@Param('reportId') reportId: number): Promise<Item[]> {
+    return this.service.getByReportID(reportId);
   }
 
   @Post('/add')
