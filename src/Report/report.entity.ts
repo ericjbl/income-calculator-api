@@ -22,7 +22,13 @@ export class Report {
 
     @Column()
     total:number;
-    
+
+    @Column()
+    result:string;
+
+    @Column()
+    percentage:number;
+
     @OneToOne(() => CalculationType, (calcType) => calcType.id)
     @JoinColumn({name: 'calc_type_id'})
     Type: CalculationType;

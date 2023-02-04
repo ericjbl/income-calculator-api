@@ -25,7 +25,6 @@ export class ReportController {
 
     @Put('/update/:id')
     updateProof(@Param() id: number, @Body() report: CreateReport) {
-        console.log(report)
         return this.service.update(report,id)
     }
 

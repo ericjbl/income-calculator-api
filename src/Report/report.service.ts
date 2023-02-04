@@ -22,7 +22,11 @@ export class ReportService {
             Proof: { 
                 Status: true,
                 Type: true,
-                Item: true,
+                ItemProof: {
+                    Item: {
+                        Role: true
+                    }
+                },
             },
             Item: {
                 Role: true
@@ -39,11 +43,16 @@ export class ReportService {
             Proof: { 
                 Status: true,
                 Type: true,
-                Item: true,
+                ItemProof: {
+                    Item: {
+                        Role: true
+                    }
+                },
             },
             Item: {
                 Role: true
             }
+           
         }
         })
   }

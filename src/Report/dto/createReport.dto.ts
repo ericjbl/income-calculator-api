@@ -8,4 +8,6 @@ export class CreateReport {
     TypeId: number;
     Type: CalculationType;
     total: number;
+    result: string;
+    percentage: number;
 }

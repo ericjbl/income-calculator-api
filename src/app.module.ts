@@ -17,6 +17,8 @@ import { Proof } from './Proof/proof.entity';
 import { Report } from './Report/report.entity';
 import { ProofModule } from './Proof/proof.module';
 import { ReportModule } from './Report/report.module';
+import { ItemProof } from './ItemProof/ItemProof.entity';
+import { ItemProofModule } from './ItemProof/ItemProof.module';
 
 @Module({
   imports: [
@@ -36,6 +38,7 @@ import { ReportModule } from './Report/report.module';
         ProofStatus,
         Proof,
         Report,
+        ItemProof
       ],
       synchronize: false,
       ssl:
@@ -49,7 +52,8 @@ import { ReportModule } from './Report/report.module';
     ItemModule,
     ProofStatusModule,
     ProofModule,
-    ReportModule
+    ReportModule,
+    ItemProofModule
   ],
   controllers: [AppController],
   providers: [AppService],

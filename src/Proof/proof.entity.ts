@@ -1,8 +1,8 @@
-import { Item } from "src/Items/item.entity";
+import { ItemProof } from "src/ItemProof/ItemProof.entity";
 import { ProofStatus } from "src/ProofStatus/proofStatus.entity";
 import { ProofTypes } from "src/ProofTypes/proofTypes.entity";
 import { Report } from "src/Report/report.entity";
-import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('proof')
 export class Proof {
@@ -10,16 +10,7 @@ export class Proof {
     id: number;
 
     @Column()
-    proof: number;
-
-    @Column()
     total: number;
-
-    @Column({name: 'start_date'})
-    StartDate: Date;
-
-    @Column({name: 'end_date'})
-    EndDate: Date;
 
     @OneToOne(() => ProofStatus, (status) => status.id)
     @JoinColumn({name: 'status_id'})
@@ -33,7 +24,12 @@ export class Proof {
     @JoinColumn({name: 'report_id'})
     Report: Report;
 
-    @ManyToOne(() => Item, (item) => item.id)
-    @JoinColumn({name: 'item_id'})
-    Item: Item;
+    @OneToMany(() => ItemProof, (itemProof) => itemProof.Proof,
+    {
+        cascade: true,
+    })
+    @JoinColumn({name: 'id'})
+    ItemProof: ItemProof[]
+
+
 }
