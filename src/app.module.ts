@@ -13,6 +13,10 @@ import { Item } from './Items/item.entity';
 import { ItemModule } from './Items/item.module';
 import { ProofStatusModule } from './ProofStatus/proofStatus.module';
 import { ProofStatus } from './ProofStatus/proofStatus.entity';
+import { Proof } from './Proof/proof.entity';
+import { Report } from './Report/report.entity';
+import { ProofModule } from './Proof/proof.module';
+import { ReportModule } from './Report/report.module';
 
 @Module({
   imports: [
@@ -29,7 +33,9 @@ import { ProofStatus } from './ProofStatus/proofStatus.entity';
         ProofTypes,
         ItemRoles,
         Item,
-        ProofStatus
+        ProofStatus,
+        Proof,
+        Report,
       ],
       synchronize: false,
       ssl:
@@ -41,7 +47,9 @@ import { ProofStatus } from './ProofStatus/proofStatus.entity';
     ProofTypeModule,
     ItemRolesModule,
     ItemModule,
-    ProofStatusModule
+    ProofStatusModule,
+    ProofModule,
+    ReportModule
   ],
   controllers: [AppController],
   providers: [AppService],
