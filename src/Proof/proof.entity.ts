@@ -12,6 +12,9 @@ export class Proof {
     @Column()
     proof: number;
 
+    @Column()
+    total: number;
+
     @Column({name: 'start_date'})
     StartDate: Date;
 

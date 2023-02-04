@@ -15,4 +15,5 @@ export class CreateProof {
     TypeId: number;
     ReportId: number;
     ItemId: number;
+    total: number;
 }
