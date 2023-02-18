@@ -1,6 +1,7 @@
 import { CalculationType } from "src/CalculationTypes/calculationTypes.entity";
 import { Item } from "src/Items/item.entity";
 import { Proof } from "src/Proof/proof.entity";
+import { ReportStatus } from "src/ReportStatus/reportStatus.entity";
 import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, OneToOne, OneToMany } from "typeorm";
 
 @Entity("report")
@@ -32,6 +33,10 @@ export class Report {
     @OneToOne(() => CalculationType, (calcType) => calcType.id)
     @JoinColumn({name: 'calc_type_id'})
     Type: CalculationType;
+
+    @OneToOne(() => ReportStatus, (status) => status.id)
+    @JoinColumn({name: 'reportstatusid'})
+    Status: ReportStatus;
 
     @OneToMany(() => Proof, (proof) => proof.Report,
     {

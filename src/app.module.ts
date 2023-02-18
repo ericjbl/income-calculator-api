@@ -19,9 +19,13 @@ import { ProofModule } from './Proof/proof.module';
 import { ReportModule } from './Report/report.module';
 import { ItemProof } from './ItemProof/ItemProof.entity';
 import { ItemProofModule } from './ItemProof/ItemProof.module';
+import { HttpModule } from '@nestjs/axios';
+import { ReportStatus } from './ReportStatus/reportStatus.entity';
+import { ReportStatusModule } from './ReportStatus/reporStatus.module';
 
 @Module({
   imports: [
+    HttpModule,
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type:'postgres',
@@ -38,7 +42,8 @@ import { ItemProofModule } from './ItemProof/ItemProof.module';
         ProofStatus,
         Proof,
         Report,
-        ItemProof
+        ItemProof,
+        ReportStatus,
       ],
       synchronize: false,
       ssl:
@@ -53,7 +58,8 @@ import { ItemProofModule } from './ItemProof/ItemProof.module';
     ProofStatusModule,
     ProofModule,
     ReportModule,
-    ItemProofModule
+    ItemProofModule,
+    ReportStatusModule,
   ],
   controllers: [AppController],
   providers: [AppService],

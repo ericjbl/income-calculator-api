@@ -31,6 +31,7 @@ export class ItemService {
     itemToBeSaved.Role = await this.itemRolesrepository.findOneBy({ id: item.roleId })
     itemToBeSaved.Report = await this.reportRepository.findOneBy({ id: item.ReportId })
     itemToBeSaved.Item = item.Item
+    itemToBeSaved.ProofId = parseInt(item.ProofId)
 
     return this.repository.save(itemToBeSaved)
   }

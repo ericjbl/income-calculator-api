@@ -1,4 +1,5 @@
 import { CalculationType } from "src/CalculationTypes/calculationTypes.entity";
+import { ReportStatus } from "src/ReportStatus/reportStatus.entity";
 
 export class CreateReport {
     name: string;
@@ -10,4 +11,6 @@ export class CreateReport {
     total: number;
     result: string;
     percentage: number;
+    reportStatusId: number;
+    Status: ReportStatus
 }

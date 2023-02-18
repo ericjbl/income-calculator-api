@@ -10,6 +10,9 @@ export class Item {
     @Column({name: "item"})
     Item: string;
 
+    @Column({name: "proofid"})
+    ProofId: number;
+
     @ManyToOne(() => ItemRoles, (role) => role.id)
     @JoinColumn({name: 'role_id'})
     Role: ItemRoles;

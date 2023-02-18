@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CalculationType } from 'src/CalculationTypes/calculationTypes.entity';
+import { ReportStatus } from 'src/ReportStatus/reportStatus.entity';
 import { Repository } from 'typeorm';
 import { CreateReport } from './dto/createReport.dto';
 import { Report } from './report.entity';
@@ -13,12 +14,15 @@ export class ReportService {
     private repository: Repository<Report>,
     @InjectRepository(CalculationType) 
     private calculationTypeRepository: Repository<CalculationType>,
+    @InjectRepository(ReportStatus) 
+    private reportStatusRepository: Repository<ReportStatus>,
   ) {}
 
   getAll(): Promise<Report []> {
     return this.repository.find({ 
         relations: { 
-            Type: true, 
+            Type: true,
+            Status: true, 
             Proof: { 
                 Status: true,
                 Type: true,
@@ -40,6 +44,7 @@ export class ReportService {
           where: {id: ID}, 
           relations: { 
             Type: true, 
+            Status: true,
             Proof: { 
                 Status: true,
                 Type: true,
@@ -59,6 +64,7 @@ export class ReportService {
 
   async add(report: CreateReport): Promise<Report> {
     report.Type = await this.calculationTypeRepository.findOneBy({ id: report.TypeId })
+    report.Status = await this.reportStatusRepository.findOneBy({ id: report.reportStatusId })
     report.ReportDate = new Date(report.ReportDate)
     report.EligibilityStartDate = new Date(report.EligibilityStartDate)
     report.EligibilityEndDate = new Date(report.EligibilityEndDate)
@@ -68,6 +74,7 @@ export class ReportService {
 
   async update(report: CreateReport, id: number) {
     report.Type = await this.calculationTypeRepository.findOneBy({ id: report.TypeId })
+    report.Status = await this.reportStatusRepository.findOneBy({ id: report.reportStatusId })
     report.ReportDate = new Date(report.ReportDate)
     report.EligibilityStartDate = new Date(report.EligibilityStartDate)
     report.EligibilityEndDate = new Date(report.EligibilityEndDate)

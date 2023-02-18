@@ -27,8 +27,8 @@ export class ItemProofService {
   }
 
   async add(proof: CreateItemProof): Promise<ItemProof> {
-    proof.Item = await this.itemRepository.findOneBy({ id: proof.ItemId })
-    proof.Proof = await this.proofRepository.findOneBy({ id: proof.proofId })
+    proof.Item = await this.itemRepository.findOneBy({ ProofId: proof.ItemId })
+    proof.Proof = await this.proofRepository.findOneBy({ id: proof.ProofId })
     proof.StartDate = new Date(proof.StartDate)
     proof.EndDate = new Date(proof.EndDate)
 
@@ -36,15 +36,15 @@ export class ItemProofService {
   }
 
   async update(proof: CreateItemProof, id: number) {
-    proof.Item = await this.itemRepository.findOneBy({ id: proof.ItemId })
-    proof.Proof = await this.proofRepository.findOneBy({ id: proof.proofId })
+    proof.Item = await this.itemRepository.findOneBy({ ProofId: proof.ItemId })
+    proof.Proof = await this.proofRepository.findOneBy({ id: proof.ProofId })
     proof.StartDate = new Date(proof.StartDate)
     proof.EndDate = new Date(proof.EndDate)
     proof.StartDate = new Date(proof.StartDate)
     proof.EndDate = new Date(proof.EndDate)
 
     delete proof.ItemId
-    delete proof.proofId
+    delete proof.ProofId
 
     return this.repository.update(id, proof)
   }

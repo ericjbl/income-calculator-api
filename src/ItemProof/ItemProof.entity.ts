@@ -23,7 +23,7 @@ export class ItemProof {
     @JoinColumn({name: 'proof_id'})
     Proof: Proof;
 
-    @ManyToOne(() => Item, (item) => item.id)
+    @ManyToOne(() => Item, (item) => item.ProofId)
     @JoinColumn({name: 'item_id'})
     Item: Item;
 }

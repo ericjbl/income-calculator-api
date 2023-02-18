@@ -9,5 +9,5 @@ export class CreateItemProof {
     ItemId: number;
     total: number;
     Proof: Proof;
-    proofId: number;
+    ProofId: number;
 }

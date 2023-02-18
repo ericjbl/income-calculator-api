@@ -5,4 +5,5 @@ export class CreateItem {
     roleId: number
     Report: Report
     ReportId: number
+    ProofId: string
 }
