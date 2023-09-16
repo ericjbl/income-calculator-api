@@ -13,6 +13,9 @@ export class ItemProof {
     @Column()
     total: number;
 
+    @Column()
+    delete: boolean;
+
     @Column({name: 'start_date'})
     StartDate: Date;
 

@@ -52,4 +52,8 @@ export class ProofService {
     return this.repository.update(id, proof)
   }
 
+  async delete(id: number) {
+    return this.repository.update(id, {Delete: true})
+  }
+
 }

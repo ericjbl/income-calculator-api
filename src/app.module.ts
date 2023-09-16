@@ -22,10 +22,22 @@ import { ItemProofModule } from './ItemProof/ItemProof.module';
 import { HttpModule } from '@nestjs/axios';
 import { ReportStatus } from './ReportStatus/reportStatus.entity';
 import { ReportStatusModule } from './ReportStatus/reporStatus.module';
+import { UserModule } from './user/user.module';
+import { UserRoleModule } from './user-role/user-role.module';
+import { UserRole } from './user-role/entities/user-role.entity';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { join } from 'path';
+import { User } from './user/entities/user.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
     HttpModule,
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+    }),
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type:'postgres',
@@ -44,6 +56,8 @@ import { ReportStatusModule } from './ReportStatus/reporStatus.module';
         Report,
         ItemProof,
         ReportStatus,
+        UserRole,
+        User
       ],
       synchronize: false,
       ssl:
@@ -60,6 +74,9 @@ import { ReportStatusModule } from './ReportStatus/reporStatus.module';
     ReportModule,
     ItemProofModule,
     ReportStatusModule,
+    UserRoleModule,
+    UserModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

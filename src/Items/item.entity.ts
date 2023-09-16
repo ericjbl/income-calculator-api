@@ -10,6 +10,12 @@ export class Item {
     @Column({name: "item"})
     Item: string;
 
+    @Column({name: "itemuid"})
+    ItemUID: string;
+
+    @Column()
+    delete: boolean;
+
     @Column({name: "proofid"})
     ProofId: number;
 

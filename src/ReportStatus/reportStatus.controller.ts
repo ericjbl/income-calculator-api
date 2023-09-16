@@ -1,9 +1,11 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { ReportStatus } from './reportStatus.entity';
 import { ReportStatusService } from './reportStatus.service';
 import { CreateReportStatus } from './create-reportStatus.dto';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller('/reportStatus')
+@UseGuards(AuthGuard)
 export class ReportStatusController {
   constructor(private readonly reportStatusService: ReportStatusService) {}
 

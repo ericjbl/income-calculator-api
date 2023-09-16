@@ -14,4 +14,5 @@ export class CreateProof {
     ReportId: number;
     // ItemProofId: number;
     total: number;
+    Delete: boolean;
 }

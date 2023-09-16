@@ -49,4 +49,8 @@ export class ItemProofService {
     return this.repository.update(id, proof)
   }
 
+  async delete(id: number) {
+    return this.repository.update(id, {delete: true})
+  }
+
 }

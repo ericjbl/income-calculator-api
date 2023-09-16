@@ -31,9 +31,28 @@ export class ItemService {
     itemToBeSaved.Role = await this.itemRolesrepository.findOneBy({ id: item.roleId })
     itemToBeSaved.Report = await this.reportRepository.findOneBy({ id: item.ReportId })
     itemToBeSaved.Item = item.Item
+    itemToBeSaved.ItemUID = item.ItemUID
     itemToBeSaved.ProofId = parseInt(item.ProofId)
 
     return this.repository.save(itemToBeSaved)
+  }
+
+  async update(item: CreateItem, id: number) {
+    const itemToBeSaved = new Item()
+
+    itemToBeSaved.Role = await this.itemRolesrepository.findOneBy({ id: item.roleId })
+    itemToBeSaved.Report = await this.reportRepository.findOneBy({ id: item.ReportId })
+    itemToBeSaved.Item = item.Item
+    itemToBeSaved.ItemUID = item.ItemUID
+    itemToBeSaved.ProofId = parseInt(item.ProofId)
+
+    console.log(itemToBeSaved)
+
+    return this.repository.update(id,itemToBeSaved)
+  }
+
+  async delete(id: number) {
+    return this.repository.update(id, {delete: true})
   }
 
 }

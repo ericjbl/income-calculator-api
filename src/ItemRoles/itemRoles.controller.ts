@@ -1,9 +1,11 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { AuthGuard } from 'src/auth/auth.guard';
 import { CreateItemRole } from './dto/createItemRole.dto';
 import { ItemRoles } from './itemRoles.entity';
 import { ItemRolesService } from './itemRoles.service';
 
 @Controller('/itemRoles')
+@UseGuards(AuthGuard)
 export class ItemRolesController {
   constructor(private readonly service: ItemRolesService) {}
 

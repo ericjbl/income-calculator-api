@@ -1,9 +1,11 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { AuthGuard } from 'src/auth/auth.guard';
 import { CalculationType } from './calculationTypes.entity';
 import { CalculationTypeService } from './calculationTypes.service';
 import { CreateCalculationType } from './create-calculationTypes.dto';
 
 @Controller('/calculationTypes')
+@UseGuards(AuthGuard)
 export class CalculationTypeController {
   constructor(private readonly calculationTypeService: CalculationTypeService) {}
 

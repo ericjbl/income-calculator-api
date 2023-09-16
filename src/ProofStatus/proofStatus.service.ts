@@ -15,6 +15,10 @@ export class ProofStatusService {
     return this.repository.find()
   }
 
+  getById(id: number): Promise<ProofStatus> {
+    return this.repository.findOne({ where: { id: id } })
+  }
+
   add(status: CreateProofStatus): Promise<ProofStatus> {
     return this.repository.save(status)
   }

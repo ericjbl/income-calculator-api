@@ -1,10 +1,12 @@
-import { Body, Controller, Get, Param, Post, Put } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, Put, UseGuards } from "@nestjs/common";
+import { AuthGuard } from "src/auth/auth.guard";
 import { CreateReport } from "./dto/createReport.dto";
 import { Report } from "./report.entity";
 import { ReportService } from "./report.service";
 
 
 @Controller('/report')
+@UseGuards(AuthGuard)
 export class ReportController {
     constructor(private readonly service: ReportService) {}
 
@@ -24,8 +26,8 @@ export class ReportController {
     }
 
     @Put('/update/:id')
-    updateProof(@Param() id: number, @Body() report: CreateReport) {
-        return this.service.update(report,id)
+    updateProof(@Param('id') id: number, @Body() report: CreateReport) {
+        return this.service.updateReport(report,id)
     }
 
 }

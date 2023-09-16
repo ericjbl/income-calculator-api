@@ -1,3 +1,4 @@
+import { Field, Int } from "@nestjs/graphql";
 import { ItemProof } from "src/ItemProof/ItemProof.entity";
 import { ProofStatus } from "src/ProofStatus/proofStatus.entity";
 import { ProofTypes } from "src/ProofTypes/proofTypes.entity";
@@ -6,11 +7,15 @@ import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGene
 
 @Entity('proof')
 export class Proof {
+    @Field(type => Int)
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
     total: number;
+
+    @Column({ name: 'delete' })
+    Delete: Boolean
 
     @OneToOne(() => ProofStatus, (status) => status.id)
     @JoinColumn({name: 'status_id'})
