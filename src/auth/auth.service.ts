@@ -7,12 +7,12 @@ dotenv.config();
 
 const signRefreshOptions : JwtSignOptions = {
     secret: process.env.JWT_REFRESH_SECRET,
-    expiresIn: '12h',
+    expiresIn: '24h',
 }
 
 const signOptions : JwtSignOptions = {
     secret: process.env.JWT_SECRET,
-    expiresIn: '1h', //20m
+    expiresIn: '8h', //20m
 }
 
 @Injectable()
